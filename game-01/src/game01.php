@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * game01
+ *
+ * @param Array $M
+ * @param int $N
+ * @return Array
+ */
 function game01 ($M = [], $N = null){
     reset($M);
     $sum = 0;
