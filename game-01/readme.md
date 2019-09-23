@@ -4,3 +4,11 @@ Let M be a not empty set of integer numbers, find the first subset of 2 numbers 
 
 ## Challenge
 You're required to create a function that receives an array (M) and integer value (N). This function has to return an array of the first possible solution.
+
+##Resolution
+You need install:
+- PHP 7.1
+- composer
+To test solution, run:
+- composer install
+- vendor/bin/kahlan
