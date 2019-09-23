@@ -21,6 +21,7 @@ class GildedRose
         return new static($name, $quality, $sellIn);
     }
 
+    /*
     public function tick()
     {
         if ($this->name != 'Aged Brie' and $this->name != 'Backstage passes to a TAFKAL80ETC concert') {
@@ -69,5 +70,46 @@ class GildedRose
                 }
             }
         }
+    }
+    */
+
+    
+    const SULFURAS = 'Sulfuras, Hand of Ragnaros';
+    const BRIE = 'Aged Brie';
+    const BACKPASS = 'Backstage passes to a TAFKAL80ETC concert';
+    const CONJURED = 'Conjured Mana Cake';
+
+    public function tick(){
+        if($this->name == self::SULFURAS) return;
+
+        $this->sellIn --;
+
+        $varQuality = 0;
+        if(!in_array($this->name, [self::BRIE, self::BACKPASS, self::CONJURED])){
+            $varQuality = -1;
+            $this->quality += $varQuality;
+        }
+
+        if($this->name == self::BRIE){
+            $varQuality = 1;
+            $this->quality += $varQuality;
+        }
+
+        if($this->name == self::BACKPASS){
+            $this->quality ++;
+            if($this->sellIn < 10) $this->quality ++;
+            if($this->sellIn < 5) $this->quality ++;
+            if($this->sellIn < 0) $this->quality = 0;
+        }
+
+        if($this->name == self::CONJURED){
+            $varQuality = -2;
+            $this->quality += $varQuality;
+        }
+
+        if($this->sellIn < 0) $this->quality += $varQuality;
+
+        if($this->quality < 0) $this->quality = 0;
+        if($this->quality > 50) $this->quality = 50;
     }
 }
