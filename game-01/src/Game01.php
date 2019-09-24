@@ -81,12 +81,14 @@ abstract class Game01{
         reset($M);
 
         $Mp = [];
+        $Mo = $M;
         foreach($M as $i => $v){
             if(isset($Mp[$v])){
                 continue;
             }
+            unset($Mo[$i]);
             $vN = $N - $v;
-            if(isset(array_flip(array_slice($M, $i + 1))[$vN])) return [$v, $vN];
+            if(isset(array_flip($Mo)[$vN])) return [$v, $vN];
             $Mp[$v] = $i;
         }
 
