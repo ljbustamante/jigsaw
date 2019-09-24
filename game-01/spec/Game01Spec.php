@@ -5,7 +5,7 @@ use App\Game01;
 describe('Game 01', function () {
 
     beforeEach(function() {
-        $this->M = [-27, 43, 2, 12, 32, -4, 9, 0, 21, 3, 7, -5, -9, 70];
+        $this->M = [-27, 43, 2, 12, 32, -4, 9, 0, 21, 3, 7, -5, -9, 70, -4, 21, 43, 2, 9];
     });
 
     describe('#sum', function () {
@@ -24,6 +24,30 @@ describe('Game 01', function () {
                 expect($sum)->toBe([3, 7]);
             });
 
+            it ('resolved number 44', function () {
+                $sum = Game01::sum2($this->M, 44);
+
+                expect($sum)->toBe([12, 32]);
+            });
+
+            it ('resolved number 10', function () {
+                $sum = Game01::sum2($this->M, 10);
+
+                expect($sum)->toBe([3, 7]);
+            });
+
+            it ('resolved number 44', function () {
+                $sum = Game01::sum3($this->M, 44);
+
+                expect($sum)->toBe([12, 32]);
+            });
+
+            it ('resolved number 10', function () {
+                $sum = Game01::sum3($this->M, 10);
+
+                expect($sum)->toBe([3, 7]);
+            });
+
         });
 
 
@@ -37,6 +61,30 @@ describe('Game 01', function () {
 
             it ('unresolved number 58', function () {
                 $sum = Game01::sum($this->M, 58);
+
+                expect($sum)->toBe(null);
+            });
+
+            it ('unresolved number 22', function () {
+                $sum = Game01::sum2($this->M, 22);
+
+                expect($sum)->toBe(null);
+            });
+
+            it ('unresolved number 58', function () {
+                $sum = Game01::sum2($this->M, 58);
+
+                expect($sum)->toBe(null);
+            });
+
+            it ('unresolved number 22', function () {
+                $sum = Game01::sum3($this->M, 22);
+
+                expect($sum)->toBe(null);
+            });
+
+            it ('unresolved number 58', function () {
+                $sum = Game01::sum3($this->M, 58);
 
                 expect($sum)->toBe(null);
             });

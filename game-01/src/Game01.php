@@ -11,7 +11,6 @@ abstract class Game01{
      * @param int $N
      * @return Array or null
      */
-
     static function sum ($M = [], $N = null){
         reset($M);
 
@@ -24,6 +23,71 @@ abstract class Game01{
                     if(array_sum($subset) == $N) return $subset;
                 }
             }
+        }
+
+        return null;
+    }
+
+    /**
+     * static method sum2: use a unique bucle
+     *
+     * @param Array $M
+     * @param int $N
+     * @return Array or null
+     */
+    static function sum2 ($M = [], $N = null){
+        reset($M);
+
+        $i = 0;
+        $j = 0;
+        $Mp = [];
+        do{
+            s:
+            $j ++;
+
+            if($j >= sizeof($M)){
+                $i ++;
+
+                if($i >= (sizeof($M) - 1)){
+                    break;
+                }
+
+                if(in_array($M[$i], $Mp)){
+                    goto s;
+                }
+
+                $Mp[] = $M[$i];
+                $j = $i;
+                continue;
+            }
+            
+        }while(($M[$i] + $M[$j]) != $N);
+
+        if($i < (sizeof($M) - 1)){
+            return [$M[$i], $M[$j]];
+        }
+
+        return null;
+    }
+
+    /**
+     * static method sum3: use a unique bucle verify if the complement exists in others items
+     *
+     * @param Array $M
+     * @param int $N
+     * @return Array or null
+     */
+    static function sum3 ($M = [], $N = null){
+        reset($M);
+
+        $Mp = [];
+        foreach($M as $i => $v){
+            if(isset($Mp[$v])){
+                continue;
+            }
+            $vN = $N - $v;
+            if(isset(array_flip(array_slice($M, $i + 1))[$vN])) return [$v, $vN];
+            $Mp[$v] = $i;
         }
 
         return null;
